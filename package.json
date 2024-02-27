@@ -12,8 +12,7 @@
     "start": "node src/index.js",
     "start:dev": "npm run lint && nodemon --exec node src/index.js --unhandled-rejections=warn",
     "test": "jest --detectOpenHandles --coverage",
-    "lint": "eslint src/**/*.js --fix",
-    "sonar": "sonar-scanner" // Added sonar script here
+    "lint": "eslint src//*.js --fix"
   },
   "repository": {
     "type": "git",
@@ -36,8 +35,7 @@
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2",
-    "supertest": "^6.1.1",
-    "sonar-scanner": "1.0.0" // Add sonar-scanner as a dev dependency here
+    "supertest": "^6.1.1"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -49,6 +47,6 @@
     "printWidth": 80,
     "semi": true,
     "singleQuote": true,
-    "trailingComma": "es5"
-  }
+    "trailingComma": "es5"
+  }
 }
