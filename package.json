@@ -2,6 +2,7 @@
   "name": "js-e2e-express-server",
   "version": "1.0.0",
   "description": "JavaScript server written with Express.js",
+  "author": "ADAM M - WEZVATECH",
   "main": "index.js",
   "directories": {
     "doc": "docs",
@@ -12,7 +13,10 @@
     "start": "node src/index.js",
     "start:dev": "npm run lint && nodemon --exec node src/index.js --unhandled-rejections=warn",
     "test": "jest --detectOpenHandles --coverage",
-    "lint": "eslint src/**/*.js --fix"
+    "lint": "eslint src//*.js --fix",
+    "owasp": "owasp-dependency-check --project \"nodebuild\" -f HTML JSON",
+    "sonar" : "sonar-scanner",
+    "test1": "nyc npm run test"
   },
   "repository": {
     "type": "git",
@@ -35,7 +39,10 @@
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2",
-    "supertest": "^6.1.1"
+    "supertest": "^6.1.1",
+    "owasp-dependency-check": "^0.0.21",
+    "sonarqube-scanner": "^3.3.0",
+    "nyc": "^15.1.0"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
