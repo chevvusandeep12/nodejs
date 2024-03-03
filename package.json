@@ -8,17 +8,7 @@
     "doc": "docs",
     "test": "test"
   },
-{
-  "name": "js-e2e-express-server",
-  "version": "1.0.0",
-  "description": "JavaScript server written with Express.js",
-  "author": "ADAM M - WEZVATECH",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
-"scripts": {
+  "scripts": {
     "build": "npm run lint",
     "start": "node src/index.js",
     "start:dev": "npm run lint && nodemon --exec node src/index.js --unhandled-rejections=warn",
@@ -27,47 +17,7 @@
     "owasp": "owasp-dependency-check --project \"nodebuild\" -f HTML JSON",
     "sonar": "sonar-scanner -Dsonar.login=sqa_4e931d90372a778a38fef9a84f45f39f9c2850a7",
     "test1": "nyc npm run test"
-},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/azure-samples/js-e2e-express-server.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/azure-samples/js-e2e-express-server/issues"
-  },
-  "homepage": "https://github.com/azure-samples/js-e2e-express-server#readme",
-  "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "jest": "^26.4.2",
-    "nodemon": "^2.0.4",
-    "prettier": "^2.1.2",
-    "supertest": "^6.1.1",
-    "owasp-dependency-check": "^0.0.21",
-    "sonarqube-scanner": "^3.3.0",
-    "nyc": "^15.1.0"
-  },
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "serve-favicon": "^2.5.0"
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
- }
-}
-,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/azure-samples/js-e2e-express-server.git"
