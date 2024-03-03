@@ -1,3 +1,76 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone Repo') {
+            steps {
+                echo 'Going to Checkout from Git'
+                git branch: 'main', credentialsId: 'gitlab-token', url: 'https://github.com/Deepak2202-del/nodejs.git'
+                echo 'Completed Checkout from Git'
+            }
+        }//end of stage 1
+        
+        stage("npm install"){
+            steps{
+                dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\piple\\'){
+                bat 'npm install'
+                }
+            }
+        }//end of stage 3
+        
+        // Add more stages here
+            //end of stage 3
+        
+         stage("Build"){
+            steps{
+                 bat 'echo "skipping build stage"'
+                //sh 'npm run build'
+            }
+        }//end of stage 4
+        
+        stage('Test'){
+            steps{
+                bat 'npm run test'
+            }
+        }//end of stage 5
+        
+        stage('SCA'){
+            steps{
+               // sh 'npm run owasp'
+               bat 'echo "owasp-done" '
+            }
+        }//end of stage 6
+        
+        stage('SAST'){
+            steps{
+                bat 'npm run sonar'
+            }
+        }//end of stage 7
+        
+        
+        stage('Code Coverage'){
+            steps{
+                bat 'npm run test1'
+                //sh 'nyc report'
+            }
+        }//end of stage 8
+        
+    }//end of stages
+}//end of pipeline
+
+
+
+
+
+-------------------------------
+
+
+
+
+
+
+
+
 {
   "name": "js-e2e-express-server",
   "version": "1.0.0",
@@ -8,16 +81,66 @@
     "doc": "docs",
     "test": "test"
   },
-  "scripts": {
+{
+  "name": "js-e2e-express-server",
+  "version": "1.0.0",
+  "description": "JavaScript server written with Express.js",
+  "author": "ADAM M - WEZVATECH",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+"scripts": {
     "build": "npm run lint",
     "start": "node src/index.js",
     "start:dev": "npm run lint && nodemon --exec node src/index.js --unhandled-rejections=warn",
     "test": "jest --detectOpenHandles --coverage",
     "lint": "eslint src//*.js --fix",
     "owasp": "owasp-dependency-check --project \"nodebuild\" -f HTML JSON",
-    "sonar" : "sonar-scanner",
+    "sonar": "sonar-scanner -Dsonar.login=sqa_4e931d90372a778a38fef9a84f45f39f9c2850a7",
     "test1": "nyc npm run test"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azure-samples/js-e2e-express-server.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azure-samples/js-e2e-express-server/issues"
+  },
+  "homepage": "https://github.com/azure-samples/js-e2e-express-server#readme",
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.4.2",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.2",
+    "supertest": "^6.1.1",
+    "owasp-dependency-check": "^0.0.21",
+    "sonarqube-scanner": "^3.3.0",
+    "nyc": "^15.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "serve-favicon": "^2.5.0"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+ }
+}
+,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/azure-samples/js-e2e-express-server.git"
