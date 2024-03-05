@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone Repo') {
+            steps {
+                echo 'Going to Checkout from Git'
+                git branch: 'main', credentialsId: 'gitlab-token', url: 'https://github.com/Deepak2202-del/nodejs.git'
+                echo 'Completed Checkout from Git'
+            }
+        }//end of stage 1
+        
+        stage("npm install"){
+            steps{
+                dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\piple\\'){
+                bat 'npm install'
+                }
+            }
+        }//end of stage 3
+        
+        // Add more stages here
+            //end of stage 3
+        
+         stage("Build"){
+            steps{
+                 bat 'echo "skipping build stage"'
+                //sh 'npm run build'
+            }
+        }//end of stage 4
+        
+        stage('Test'){
+            steps{
+                bat 'npm run test'
+            }
+        }//end of stage 5
+        
+        stage('SCA'){
+            steps{
+               // sh 'npm run owasp'
+               bat 'echo "owasp-done" '
+            }
+        }//end of stage 6
+        
+        stage('SAST'){
+            steps{
+                bat 'npm run sonar'
+            }
+        }//end of stage 7
+        
+        
+        stage('Code Coverage'){
+            steps{
+                bat 'npm run test1'
+                //sh 'nyc report'
+            }
+        }//end of stage 8
+    }//end of stages
+}//end of pipeline
