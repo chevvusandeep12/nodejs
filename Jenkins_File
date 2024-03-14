@@ -1,6 +1,5 @@
 pipeline {
-    agent any
-    
+    agent { label 'demo1' }
     stages {
         stage('Clone Repo') {
             steps {
@@ -10,49 +9,100 @@ pipeline {
             }
         }//end of stage 1
         
+        
+        
+        stage('install node'){
+            steps{
+                sh 'sudo apt update'
+                sh 'curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -'
+                sh 'sudo apt-get install nodejs -y'
+                sh 'npm -v'
+            }
+        }//end of stage 2
+        
+        
+        
         stage("npm install"){
             steps{
-                dir('C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\piple\\'){
-                bat 'npm install'
+                dir('/tmp/jenkins/workspace/nodebuild'){
+                sh 'npm install'
                 }
             }
         }//end of stage 3
         
-        // Add more stages here
-            //end of stage 3
         
-         stage("Build"){
+        stage("Build"){
             steps{
-                 bat 'echo "skipping build stage"'
+                 sh 'echo "skipping build stage"'
                 //sh 'npm run build'
             }
         }//end of stage 4
         
         stage('Test'){
             steps{
-                bat 'npm run test'
+                sh 'npm run test'
             }
         }//end of stage 5
         
         stage('SCA'){
             steps{
                // sh 'npm run owasp'
-               bat 'echo "owasp-done" '
+               sh 'echo "owasp-done" '
             }
         }//end of stage 6
         
         stage('SAST'){
             steps{
-                bat 'npm run sonar'
+                sh 'npm run sonar'
             }
         }//end of stage 7
         
         
         stage('Code Coverage'){
             steps{
-                bat 'npm run test1'
+                sh 'npm run test1'
                 //sh 'nyc report'
             }
         }//end of stage 8
-    }//end of stages
-}//end of pipeline
+        
+        
+        stage('Docker Setup'){
+            steps{
+                sh 'sudo apt install -y docker.io'
+                sh 'systemctl status docker'
+                //sh 'sudo adduser jenkins'
+                sh 'sudo usermod -a -G docker jenkins'
+            }
+        }//end of stage 9
+        
+        
+        
+        stage('Image Generation'){
+            steps{
+                dir('/tmp/jenkins/workspace/nodebuild'){
+                sh 'whoami'
+                sh 'sudo su - jenkins'
+                sh 'whoami'
+                sh 'sudo su'
+                sh 'docker build -t first-image:my-node-app .'
+                }
+            }
+        }//end of stage 10
+        
+        
+        stage('Docker Login'){
+            steps{
+                sh 'docker login -u "ravuladeepak2202@gmail.com" -p "Bunty22@"'
+                sh 'docker tag first-image:my-node-app minkirk/first-image:my-node-app'
+                sh 'docker push minkirk/first-image:my-node-app'
+            }
+        }//end of stage 11
+        
+        stage('smoke deploy'){
+            steps{
+                sh 'docker run --rm -p 3000:3000 first-image:my-node-app' 
+            }
+        }//end of stage 8
+        
+    }
+}
