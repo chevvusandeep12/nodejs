@@ -50,10 +50,10 @@
     "express": "^4.17.1",
     "serve-favicon": "^2.5.0"
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
- }
+"prettier": {
+  "printWidth": 80,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all"
+ }
 }
