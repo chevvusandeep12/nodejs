@@ -15,7 +15,7 @@
     "test": "jest --detectOpenHandles --coverage",
     "lint": "eslint src//*.js --fix",
     "owasp": "owasp-dependency-check --project \"nodebuild\" -f HTML JSON",
-    "sonar": "sonar-scanner -Dsonar.login=531db4c49569e409150f906dcbebff318ffbd548",
+    "sonar": "sonar-scanner -Dsonar.login=ef85ed2eff659eee1ed8884f395c1ebba1395c35",
     "test1": "nyc npm run test"
   },
   "repository": {
