@@ -1,23 +1,18 @@
-# Stage 1: Build Node.js application
+# Stage 1: Install dependencies and lint code
 FROM node:latest as builder
 
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
-
-COPY . .
-
-RUN npm run build
+RUN npm run lint
 
 # Stage 2: Create production image
 FROM node:alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+COPY --from=builder /app .
 
 EXPOSE 3000
 
