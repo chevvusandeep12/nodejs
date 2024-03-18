@@ -5,6 +5,11 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
+
+# Copy source code
+COPY src ./src
+
+# Run linting
 RUN npm run lint
 
 # Stage 2: Create production image
