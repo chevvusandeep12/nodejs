@@ -13,7 +13,7 @@ pipeline {
          stage('install node'){
             steps{
                 sh 'sudo apt update'
-                sh 'curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -'
+                sh 'curl -sL https://deb.nodesource.com/setup_16.x | bash -'
                 sh 'sudo apt-get install nodejs -y'
                 sh 'npm -v'
             }
