@@ -5,7 +5,7 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 echo 'Going to Checkout from Git'
-                git branch: 'main', credentialsId: 'gittoken', url: 'https://github.com/Deepak2202-del/nodejs.git'
+                git branch: 'main', credentialsId: 'gittoken', url: 'https://github.com/chevvusandeep12/nodejs.git'
                 echo 'Completed Checkout from Git'
             }
         }//end of stage 1
@@ -79,9 +79,9 @@ pipeline {
 
         stage('Docker Login & Docker tag   Docker push '){
             steps{
-                sh 'docker login -u "ravuladeepak2202@gmail.com" -p "Bunty22@*#"'
-                sh 'docker tag first-image:latest dravula/first-image:latest'
-                sh 'docker push dravula/first-image:latest'
+                sh 'docker login -u "docker login -u chevvusandeep" -p "dckr_pat_dTYgGjZmf6xW6N-Ra4kFiguBGuw"'
+                sh 'docker tag first-image:latest sandeep/first-image:latest'
+                sh 'docker push sandeep/first-image:latest'
             }
         }//end of stage 11
          stage('smoke deploy'){
